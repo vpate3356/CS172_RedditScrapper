@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Output</title>
+</head>
+<body>
+    <h1>Search Results</h1>
+    <hr>
+    {% for passage in lucene_output %}
+        <div>
+            <h3>Document ID: {{ passage.document_id }}</h3>
+            <p>Score: {{ passage.score }}</p>
+            <p>Title: {{ passage.title }}</p>
+            <p>URL: <a href="{{ passage.url }}">{{ passage.url }}</a></p>
+            <p>Body: {{ passage.body }}</p>
+            <ul>
+                {% for comment in passage.comments %}
+                    <li>
+                        <p>Author: {{ comment.author }}</p>
+                        <p>Body: {{ comment.body }}</p>
+                        <p>Upvotes: {{ comment.upvotes }}</p>
+                        <p>Permalink: <a href="{{ comment.permalink }}">{{ comment.permalink }}</a></p>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <hr>
+    {% endfor %}
+</body>
+</html>
